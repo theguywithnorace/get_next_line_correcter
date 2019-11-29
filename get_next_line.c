@@ -6,76 +6,43 @@
 /*   By: timothee <timothee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:49:13 by timothee          #+#    #+#             */
-/*   Updated: 2019/11/26 11:47:49 by tiin             ###   ########.fr       */
+/*   Updated: 2019/11/29 18:27:51 by tiin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		check(char *s, int max)
+int	main(int argc, char **argv)
 {
-	int i;
-
-	i = 0;
-	while (i < max && s[i] != '\n')
-		i++;
-	return (i);
-}
-
-char	*initialize(char *s)
-{
-	if (!s)
+	char *line = 0;
+	if (argc == 2)
 	{
-		if (!(s = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-			return (0);
-	}
-	return (s);
-}
-
-void	copy_and_shorten(char **l, char **s, int n, int f)
-{
-	(*l) = ft_strdup_m(*s);
-	(*s) = ft_substr_m(*s, n + 1, BUFFER_SIZE - f - 1);
-}
-
-int		get_next_line(int fd, char **line)
-{
-	int			rd;
-	int			n;
-	static char	*s;
-	char		buff[BUFFER_SIZE];
-
-	if (fd <= 0)
-		return (fd);
-	s = initialize(s);
-	n = 0;
-	rd = read(fd, buff, BUFFER_SIZE);
-	s = ft_strjoin_free(s, buff, BUFFER_SIZE);
-	while (check(s, ft_strlen(s)) == ft_strlen(s) && rd > 0) // => on n'a rien trouvé
-	{
-		rd = read(fd, buff, BUFFER_SIZE);
-		s = ft_strjoin_free(s, buff, BUFFER_SIZE);
-	}
-	if (check(s, ft_strlen(s)) < ft_strlen(s))
-	{
-		copy_and_shorten(line, &s, check(s, ft_strlen(s)),
-				check(buff, BUFFER_SIZE));
-		return (1);
+		int fd = open (argv[1], O_RDONLY);
+		while (get_next_line(fd,&line) > 0)
+		{
+			printf("%s\n",line);
+			free(line);
+		}
+		printf("%s\n",line);
+		free(line);
+		close(fd);
 	}
 	return (0);
 }
 
-int main ()
+int main (int ac, char **av)
 {
+	char *l = 0;
 	int fd;
-	char *l;
-	// char b[100];
 
-	if (!(l = malloc(10000)))
+	if (ac == 2)
+		fd = open (av[1], O_RDONLY);
+	else
+	{
+		printf("MISSING ARGS\n");
 		return (0);
+	}
 
-	fd = open("./get_next_line.h", O_RDONLY);
-	printf("fd : %d  .. l : %p \n", fd, l);
 	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
 	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
 	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
@@ -98,8 +65,41 @@ int main ()
 	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
 	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
 	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
-
-	// printf("int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
+	printf(">>>>  int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);// printf("int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
 	// printf("int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
 	// printf("int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
 	// printf("int answer : %d    String : _%s_\n", get_next_line(fd, &l), l);
