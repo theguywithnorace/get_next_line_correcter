@@ -1,34 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: timothee <timothee@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 13:49:13 by timothee          #+#    #+#             */
-/*   Updated: 2019/11/29 18:27:51 by tiin             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
-
-int	main(int argc, char **argv)
-{
-	char *line = 0;
-	if (argc == 2)
-	{
-		int fd = open (argv[1], O_RDONLY);
-		while (get_next_line(fd,&line) > 0)
-		{
-			printf("%s\n",line);
-			free(line);
-		}
-		printf("%s\n",line);
-		free(line);
-		close(fd);
-	}
-	return (0);
-}
+#include <libc.h>
 
 int main (int ac, char **av)
 {
